@@ -23,21 +23,21 @@ Edit the .env file with your preferred editor:
 ```bash
 nano .env
 ```
-> ✏️ Update values like _ELASTIC_PASSWORD_, _KIBANA_PASSWORD_, _LOGSTASH_PASSWORD_, _ELASTICSEARCH_HOST_, _KIBANA_URL_.
+> ✏️ _Update values like ELASTIC_PASSWORD, KIBANA_PASSWORD, LOGSTASH_PASSWORD, ELASTICSEARCH_HOST, KIBANA_URL._
 
 ## 🛠️ 3. Build and Start the Stack
 Use Docker Compose to build and run the containers:
 ```bash
 docker compose up --build -d
 ```
-> 🐳 This command will build all necessary images and run them in detached mode.
+> 🐳 _This command will build all necessary images and run them in detached mode._
 
 ## ✅ 4. Access the Services
 Once everything is up and running, you can access the services at:
 
 - Elasticsearch: https://localhost:9200
 - Kibana: https://localhost:5601
-> ⚠️ Since the certificates are self-signed, your browser may show a security warning when accessing Kibana. You can safely proceed after confirming the exception.
+> ⚠️ _Since the certificates are self-signed, your browser may show a security warning when accessing Kibana. You can safely proceed after confirming the exception._
 
 ## 🧩 Environment Variables Overview (.env)
 | Variable             | Description                 | Default                      |
@@ -62,7 +62,7 @@ This script will:
 - Create a new Certificate Signing Request (CSR) for Elasticsearch.
 - Sign the new Elasticsearch certificate with the newly generated CA.
 
-> ⚠️ After the new certificates are generated, restart the Docker Compose to apply the new certificates:
+> ⚠️ _After the new certificates are generated, restart the Docker Compose to apply the new certificates:_
 > ```bash
 > docker compose restart
 > ```
