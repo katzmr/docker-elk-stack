@@ -50,3 +50,19 @@ Once everything is up and running, you can access the services at:
 | `ELASTICSEARCH_HOST` | Host URL for Elasticsearch  | `https://elasticsearch:9200` |
 | `KIBANA_URL`         | Kibana base URL             | `https://localhost:5601`     |
 | `VERSION`            | Version                     | `9.0.1`                      |
+
+## ✨ Updating the Certificates
+```bash
+docker exec -it elasticsearch bash /usr/local/bin/generate_new_certificates.sh
+```
+This script will:
+- Remove old certificates (if they exist).
+- Generate new CA (Certificate Authority).
+- Generate a new private key for Elasticsearch.
+- Create a new Certificate Signing Request (CSR) for Elasticsearch.
+- Sign the new Elasticsearch certificate with the newly generated CA.
+
+> ⚠️ After the new certificates are generated, restart the Docker Compose to apply the new certificates:
+> ```bash
+> docker compose restart
+> ```
