@@ -9,8 +9,8 @@ RUN mkdir -p /usr/share/elasticsearch/config/certs && \
     chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/config/certs
 
 COPY elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml
-COPY entrypoint.sh create_users.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/entrypoint.sh /usr/local/bin/create_users.sh
+COPY entrypoint.sh create_users.sh generate_new_certificates.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/entrypoint.sh /usr/local/bin/create_users.sh /usr/local/bin/generate_new_certificates.sh
 
 USER elasticsearch
 
