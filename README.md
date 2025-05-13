@@ -24,7 +24,7 @@ Edit the .env file with your preferred editor:
 ```bash
 nano .env
 ```
-> ✏️ Tip: Update values like _ELASTIC_PASSWORD_, _KIBANA_PASSWORD_, _LOGSTASH_PASSWORD_, and _ELASTICSEARCH_HOST_.
+> ✏️ Tip: Update values like _ELASTIC_PASSWORD_, _KIBANA_PASSWORD_, _LOGSTASH_PASSWORD_, _ELASTICSEARCH_HOST_, _KIBANA_URL_.
 
 ## 🛠️ 3. Build and Start the Stack
 Use Docker Compose to build and run the containers:
