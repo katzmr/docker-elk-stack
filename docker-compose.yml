@@ -4,12 +4,6 @@ services:
       context: ./elasticsearch
       args:
         VERSION: ${VERSION:-9.0.1}
-        ELASTIC_PASSWORD: ${ELASTICSEARCH_PASSWORD:-ElasticPasssword1}
-        KIBANA_USER: ${KIBANA_USER:-kibana_elk}
-        KIBANA_PASSWORD: ${KIBANA_PASSWORD:-KibanaPassword1}
-        LOGSTASH_USER: ${LOGSTASH_USER:-logstash_elk}
-        LOGSTASH_PASSWORD: ${LOGSTASH_PASSWORD:-LogstashPassword1}
-        ELASTICSEARCH_HOST: ${ELASTICSEARCH_HOST:-http://elasticsearch:9200}
     container_name: elasticsearch
     environment:
       - ES_JAVA_OPTS=-Xms1024m -Xmx1024m
