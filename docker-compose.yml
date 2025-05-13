@@ -63,6 +63,7 @@ services:
 
 volumes:
   elk_data:
+    name: elk_data
 
 networks:
   elk_network:
