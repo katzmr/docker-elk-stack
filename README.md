@@ -1,6 +1,5 @@
 # 🚀 ELK Stack (Elasticsearch, Logstash, Kibana) v9.0.1
-
-Deploy a ELK stack using Docker Compose.
+> 🔐 Configured with self-signed SSL/TLS certificates
 
 ## ⚠️ Requirements
 
@@ -36,17 +35,17 @@ docker compose up --build -d
 ## ✅ 4. Access the Services
 Once everything is up and running, you can access the services at:
 
-- Elasticsearch: http://localhost:9200
-- Kibana: http://localhost:5601
+- Elasticsearch: https://localhost:9200
+- Kibana: https://localhost:5601
 
 ## 🧩 Environment Variables Overview (.env)
-| Variable             | Description                 | Default                     |
-|----------------------|-----------------------------|-----------------------------|
-| `ELASTIC_PASSWORD`   | Password for `elastic` user | `ElasticPassword1`          |
-| `KIBANA_USER`        | Kibana internal user        | `kibana_elk`                |
-| `KIBANA_PASSWORD`    | Kibana user password        | `KibanaPassword1`           |
-| `LOGSTASH_USER`      | Logstash internal user      | `logstash_elk`              |
-| `LOGSTASH_PASSWORD`  | Logstash user password      | `LogstashPassword1`         |
-| `ELASTICSEARCH_HOST` | Host URL for Elasticsearch  | `http://elasticsearch:9200` |
-| `KIBANA_URL`         | Kibana base URL             | `http://localhost:5601`     |
-| `VERSION`            | Version                     | `9.0.1`                     |
+| Variable             | Description                 | Default                      |
+|----------------------|-----------------------------|------------------------------|
+| `ELASTIC_PASSWORD`   | Password for `elastic` user | `ElasticPassword1`           |
+| `KIBANA_USER`        | Kibana internal user        | `kibana_elk`                 |
+| `KIBANA_PASSWORD`    | Kibana user password        | `KibanaPassword1`            |
+| `LOGSTASH_USER`      | Logstash internal user      | `logstash_elk`               |
+| `LOGSTASH_PASSWORD`  | Logstash user password      | `LogstashPassword1`          |
+| `ELASTICSEARCH_HOST` | Host URL for Elasticsearch  | `https://elasticsearch:9200` |
+| `KIBANA_URL`         | Kibana base URL             | `https://localhost:5601`     |
+| `VERSION`            | Version                     | `9.0.1`                      |

@@ -7,7 +7,7 @@ services:
     container_name: elasticsearch
     environment:
       - ES_JAVA_OPTS=-Xms1024m -Xmx1024m
-      - ELASTICSEARCH_HOST=${ELASTICSEARCH_HOST:-http://elasticsearch:9200}
+      - ELASTICSEARCH_HOST=${ELASTICSEARCH_HOST:-https://elasticsearch:9200}
       - ELASTIC_PASSWORD=${ELASTICSEARCH_PASSWORD:-ElasticPassword1}
       - KIBANA_USER=${KIBANA_USER:-kibana_elk}
       - KIBANA_PASSWORD=${KIBANA_PASSWORD:-KibanaPassword1}
@@ -15,6 +15,7 @@ services:
       - LOGSTASH_PASSWORD=${LOGSTASH_PASSWORD:-LogstashPassword1}
     volumes:
       - elk_data:/usr/share/elasticsearch/data
+      - ./certs:/usr/share/elasticsearch/config/certs
     ulimits:
       memlock:
         soft: -1
@@ -30,12 +31,13 @@ services:
     depends_on:
       - elasticsearch
     environment:
-      - KIBANA_URL=${KIBANA_URL:-http://localhost:5601}
-      - ELASTICSEARCH_HOST=${ELASTICSEARCH_HOST:-http://elasticsearch:9200}
+      - KIBANA_URL=${KIBANA_URL:-https://localhost:5601}
+      - ELASTICSEARCH_HOST=${ELASTICSEARCH_HOST:-https://elasticsearch:9200}
       - KIBANA_USER=${KIBANA_USER:-kibana_elk}
       - KIBANA_PASSWORD=${KIBANA_PASSWORD:-KibanaPassword1}
     volumes:
       - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+      - ./certs:/usr/share/kibana/config/certs
     ports:
       - "5601:5601"
     networks:
@@ -50,10 +52,11 @@ services:
       - LS_JAVA_OPTS=-Xms1024m -Xmx1024m
       - LOGSTASH_USER=${LOGSTASH_USER:-logstash_elk}
       - LOGSTASH_PASSWORD=${LOGSTASH_PASSWORD:-LogstashPassword1}
-      - ELASTICSEARCH_HOST=${ELASTICSEARCH_HOST:-http://elasticsearch:9200}
+      - ELASTICSEARCH_HOST=${ELASTICSEARCH_HOST:-https://elasticsearch:9200}
     volumes:
       - ./logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
       - ./logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./certs:/usr/share/logstash/config/certs
     ports:
       - "5044:5044"
       - "5000:5000"
