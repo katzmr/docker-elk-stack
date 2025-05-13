@@ -29,7 +29,7 @@ nano .env
 ## 🛠️ 3. Build and Start the Stack
 Use Docker Compose to build and run the containers:
 ```bash
-docker-compose up --build -d
+docker compose up --build -d
 ```
 > 🐳 This command will build all necessary images and run them in detached mode.
 
