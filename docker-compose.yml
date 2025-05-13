@@ -1,0 +1,76 @@
+services:
+  elasticsearch:
+    build:
+      context: ./elasticsearch
+      args:
+        VERSION: ${VERSION:-9.0.1}
+        ELASTIC_PASSWORD: ${ELASTICSEARCH_PASSWORD:-ElasticPasssword1}
+        KIBANA_USER: ${KIBANA_USER:-kibana_elk}
+        KIBANA_PASSWORD: ${KIBANA_PASSWORD:-KibanaPassword1}
+        LOGSTASH_USER: ${LOGSTASH_USER:-logstash_elk}
+        LOGSTASH_PASSWORD: ${LOGSTASH_PASSWORD:-LogstashPassword1}
+        ELASTICSEARCH_HOST: ${ELASTICSEARCH_HOST:-http://elasticsearch:9200}
+    container_name: elasticsearch
+    environment:
+      - ES_JAVA_OPTS=-Xms1024m -Xmx1024m
+      - ELASTICSEARCH_HOST=${ELASTICSEARCH_HOST:-http://elasticsearch:9200}
+      - ELASTIC_PASSWORD=${ELASTICSEARCH_PASSWORD:-ElasticPassword1}
+      - KIBANA_USER=${KIBANA_USER:-kibana_elk}
+      - KIBANA_PASSWORD=${KIBANA_PASSWORD:-KibanaPassword1}
+      - LOGSTASH_USER=${LOGSTASH_USER:-logstash_elk}
+      - LOGSTASH_PASSWORD=${LOGSTASH_PASSWORD:-LogstashPassword1}
+    volumes:
+      - elk_data:/usr/share/elasticsearch/data
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - "9200:9200"
+    networks:
+      - elk_network
+
+  kibana:
+    image: kibana:${VERSION:-9.0.1}
+    container_name: kibana
+    depends_on:
+      - elasticsearch
+    environment:
+      - KIBANA_URL=${KIBANA_URL:-http://localhost:5601}
+      - ELASTICSEARCH_HOST=${ELASTICSEARCH_HOST:-http://elasticsearch:9200}
+      - KIBANA_USER=${KIBANA_USER:-kibana_elk}
+      - KIBANA_PASSWORD=${KIBANA_PASSWORD:-KibanaPassword1}
+    volumes:
+      - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+    ports:
+      - "5601:5601"
+    networks:
+      - elk_network
+
+  logstash:
+    image: logstash:${VERSION:-9.0.1}
+    container_name: logstash
+    depends_on:
+      - elasticsearch
+    environment:
+      - LS_JAVA_OPTS=-Xms1024m -Xmx1024m
+      - LOGSTASH_USER=${LOGSTASH_USER:-logstash_elk}
+      - LOGSTASH_PASSWORD=${LOGSTASH_PASSWORD:-LogstashPassword1}
+      - ELASTICSEARCH_HOST=${ELASTICSEARCH_HOST:-http://elasticsearch:9200}
+    volumes:
+      - ./logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      - ./logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+    ports:
+      - "5044:5044"
+      - "5000:5000"
+      - "9600:9600"
+    networks:
+      - elk_network
+
+volumes:
+  elk_data:
+
+networks:
+  elk_network:
+    name: elk_network
+    driver: bridge

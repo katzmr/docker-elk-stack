@@ -1,0 +1,7 @@
+xpack.security.enabled: true
+xpack.security.authc.api_key.enabled: true
+network.host: 0.0.0.0
+node.name: elasticsearch
+discovery.type: single-node
+cluster.name: elk-cluster
+bootstrap.memory_lock: true

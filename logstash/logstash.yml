@@ -1,0 +1,4 @@
+xpack.monitoring.enabled: true
+xpack.monitoring.elasticsearch.hosts: [ "${ELASTICSEARCH_HOST}" ]
+xpack.monitoring.elasticsearch.username: "${LOGSTASH_USER}"
+xpack.monitoring.elasticsearch.password: "${LOGSTASH_PASSWORD}"

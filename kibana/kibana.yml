@@ -1,0 +1,7 @@
+server.name: kibana
+server.host: "0.0.0.0"
+elasticsearch.hosts: [ "${ELASTICSEARCH_HOST}" ]
+monitoring.ui.container.elasticsearch.enabled: true
+elasticsearch.username: "${KIBANA_USER}"
+elasticsearch.password: "${KIBANA_PASSWORD}"
+server.publicBaseUrl: "${KIBANA_URL}"
