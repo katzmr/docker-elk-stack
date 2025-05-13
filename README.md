@@ -37,6 +37,7 @@ Once everything is up and running, you can access the services at:
 
 - Elasticsearch: https://localhost:9200
 - Kibana: https://localhost:5601
+> ⚠️ Note: Since the certificates are self-signed, your browser may show a security warning when accessing Kibana. You can safely proceed after confirming the exception.
 
 ## 🧩 Environment Variables Overview (.env)
 | Variable             | Description                 | Default                      |
