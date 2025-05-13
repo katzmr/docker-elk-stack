@@ -6,6 +6,6 @@ elasticsearch.username: "${KIBANA_USER}"
 elasticsearch.password: "${KIBANA_PASSWORD}"
 server.publicBaseUrl: "${KIBANA_URL}"
 server.ssl.enabled: true
-server.ssl.certificate: config/certs/elasticsearch.crt
-server.ssl.key: config/certs/elasticsearch.key
+server.ssl.certificate: config/certs/kibana.crt
+server.ssl.key: config/certs/kibana.key
 elasticsearch.ssl.certificateAuthorities: [ "config/certs/ca.crt" ]

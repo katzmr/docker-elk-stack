@@ -4,11 +4,13 @@ set -e
 
 AUTH="elastic:${ELASTIC_PASSWORD}"
 HEADERS=(-H "Content-Type: application/json")
+CA_CERT="/usr/share/elasticsearch/config/certs/ca.crt"
+CURL="curl -s --cacert $CA_CERT"
 
 # Check if user exists
 user_exists() {
   local user=$1
-  local code=$(curl -u "${AUTH}" -s -o /dev/null -w "%{http_code}" "${ELASTICSEARCH_HOST}/_security/user/${user}")
+  local code=$($CURL -u "${AUTH}" -s -o /dev/null -w "%{http_code}" "${ELASTICSEARCH_HOST}/_security/user/${user}")
   [[ "$code" -eq 200 ]]
 }
 
@@ -20,7 +22,7 @@ create_user() {
 
   echo "[INFO] Create user '${user}' with role '${role}'..."
 
-  curl -u "${AUTH}" -s "${ELASTICSEARCH_HOST}/_security/user/${user}" \
+  $CURL -u "${AUTH}" -s "${ELASTICSEARCH_HOST}/_security/user/${user}" \
     -X POST "${HEADERS[@]}" \
     -d '{
       "password": "'"${pass}"'",
@@ -33,7 +35,7 @@ create_user() {
 # Create role logstash_writer
 create_logstash_writer_role() {
   echo "[INFO] Create role 'logstash_writer'..."
-  curl -u "${AUTH}" -s -X POST "${ELASTICSEARCH_HOST}/_security/role/logstash_writer" \
+  $CURL -u "${AUTH}" -s -X POST "${ELASTICSEARCH_HOST}/_security/role/logstash_writer" \
     "${HEADERS[@]}" \
     -d '{
       "cluster": ["manage_index_templates", "monitor"],

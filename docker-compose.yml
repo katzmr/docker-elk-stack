@@ -15,7 +15,7 @@ services:
       - LOGSTASH_PASSWORD=${LOGSTASH_PASSWORD:-LogstashPassword1}
     volumes:
       - elk_data:/usr/share/elasticsearch/data
-      - ./certs:/usr/share/elasticsearch/config/certs
+      - elk_certs:/usr/share/elasticsearch/config/certs
     ulimits:
       memlock:
         soft: -1
@@ -37,7 +37,7 @@ services:
       - KIBANA_PASSWORD=${KIBANA_PASSWORD:-KibanaPassword1}
     volumes:
       - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
-      - ./certs:/usr/share/kibana/config/certs
+      - elk_certs:/usr/share/kibana/config/certs
     ports:
       - "5601:5601"
     networks:
@@ -56,7 +56,7 @@ services:
     volumes:
       - ./logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
       - ./logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
-      - ./certs:/usr/share/logstash/config/certs
+      - elk_certs:/usr/share/logstash/config/certs
     ports:
       - "5044:5044"
       - "5000:5000"
@@ -67,6 +67,8 @@ services:
 volumes:
   elk_data:
     name: elk_data
+  elk_certs:
+    name: elk_certs
 
 networks:
   elk_network:
