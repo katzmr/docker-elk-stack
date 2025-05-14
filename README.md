@@ -8,13 +8,14 @@
 - CPU with support for x86-64-v2 architecture
 
 ---
-## 📦 1. Clone the Repository
+## 🚀 Getting Started
+### 📦 1. Clone the Repository
 
 ```bash
 git clone https://github.com/katzmr/docker-elk-stack.git
 cd docker-elk-stack
 ```
-## ⚙️ 2. Configure Environment Variables
+### ⚙️ 2. Configure Environment Variables
 Rename the example environment file:
 ```bash
 mv .env.example .env
@@ -25,20 +26,20 @@ nano .env
 ```
 > ✏️ _Update values like ELASTIC_PASSWORD, KIBANA_PASSWORD, LOGSTASH_PASSWORD, ELASTICSEARCH_HOST, KIBANA_URL._
 
-## 🛠️ 3. Build and Start the Stack
+### 🛠️ 3. Build and Start the Stack
 Use Docker Compose to build and run the containers:
 ```bash
 docker compose up --build -d
 ```
 > 🐳 _This command will build all necessary images and run them in detached mode._
 
-## ✅ 4. Access the Services
+### ✅ 4. Access the Services
 Once everything is up and running, you can access the services at:
 
 - Elasticsearch: https://localhost:9200
 - Kibana: https://localhost:5601
 > ⚠️ _Since the certificates are self-signed, your browser may show a security warning when accessing Kibana. You can safely proceed after confirming the exception._
-
+---
 ## 🧩 Environment Variables Overview (.env)
 | Variable             | Description                 | Default                      |
 |----------------------|-----------------------------|------------------------------|
@@ -50,7 +51,7 @@ Once everything is up and running, you can access the services at:
 | `ELASTICSEARCH_HOST` | Host URL for Elasticsearch  | `https://elasticsearch:9200` |
 | `KIBANA_URL`         | Kibana base URL             | `https://localhost:5601`     |
 | `VERSION`            | Version                     | `9.0.1`                      |
-
+---
 ## ✨ Updating the Certificates
 ```bash
 docker exec -it elasticsearch bash /usr/local/bin/generate_new_certificates.sh
