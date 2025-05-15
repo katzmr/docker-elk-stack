@@ -24,7 +24,7 @@ Edit the .env file with your preferred editor:
 ```bash
 nano .env
 ```
-> ✏️ _Update values like ELASTIC_PASSWORD, KIBANA_PASSWORD, LOGSTASH_PASSWORD, ELASTICSEARCH_HOST, KIBANA_URL._
+> ✏️ _Update values like ELASTIC_PASSWORD, KIBANA_PASSWORD, LOGSTASH_USER, LOGSTASH_PASSWORD, ELASTICSEARCH_HOST, KIBANA_URL, KIBANA_SECRET, KIBANA_USER._
 
 ### 🛠️ 3. Build and Start the Stack
 Use Docker Compose to build and run the containers:
@@ -41,16 +41,17 @@ Once everything is up and running, you can access the services at:
 > ⚠️ _Since the certificates are self-signed, your browser may show a security warning when accessing Kibana. You can safely proceed after confirming the exception._
 ---
 ## 🧩 Environment Variables Overview (.env)
-| Variable             | Description                 | Default                      |
-|----------------------|-----------------------------|------------------------------|
-| `ELASTIC_PASSWORD`   | Password for `elastic` user | `ElasticPassword1`           |
-| `KIBANA_USER`        | Kibana internal user        | `kibana_elk`                 |
-| `KIBANA_PASSWORD`    | Kibana user password        | `KibanaPassword1`            |
-| `LOGSTASH_USER`      | Logstash internal user      | `logstash_elk`               |
-| `LOGSTASH_PASSWORD`  | Logstash user password      | `LogstashPassword1`          |
-| `ELASTICSEARCH_HOST` | Host URL for Elasticsearch  | `https://elasticsearch:9200` |
-| `KIBANA_URL`         | Kibana base URL             | `https://localhost:5601`     |
-| `VERSION`            | Version                     | `9.0.1`                      |
+| Variable             | Description                 | Default                             |
+|----------------------|-----------------------------|-------------------------------------|
+| `ELASTIC_PASSWORD`   | Password for `elastic` user | `ElasticPassword1`                  |
+| `KIBANA_USER`        | Kibana internal user        | `kibana_elk`                        |
+| `KIBANA_PASSWORD`    | Kibana user password        | `KibanaPassword1`                   |
+| `LOGSTASH_USER`      | Logstash internal user      | `logstash_elk`                      |
+| `LOGSTASH_PASSWORD`  | Logstash user password      | `LogstashPassword1`                 |
+| `ELASTICSEARCH_HOST` | Host URL for Elasticsearch  | `https://elasticsearch:9200`        |
+| `KIBANA_URL`         | Kibana base URL             | `https://localhost:5601`            |
+| `KIBANA_SECRET`      | Kibana secret key           | `k9P3v6sFz2LmX8Wa0YeTqGhJb7CrNuDi`  |
+| `VERSION`            | Version                     | `9.0.1`                             |
 ---
 ## ✨ Updating the Certificates
 ```bash

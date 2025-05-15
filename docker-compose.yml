@@ -35,6 +35,7 @@ services:
       - ELASTICSEARCH_HOST=${ELASTICSEARCH_HOST:-https://elasticsearch:9200}
       - KIBANA_USER=${KIBANA_USER:-kibana_elk}
       - KIBANA_PASSWORD=${KIBANA_PASSWORD:-KibanaPassword1}
+      - KIBANA_SECRET=${KIBANA_SECRET:-k9P3v6sFz2LmX8Wa0YeTqGhJb7CrNuDi}
     volumes:
       - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
       - elk_certs:/usr/share/kibana/config/certs

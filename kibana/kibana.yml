@@ -9,3 +9,4 @@ server.ssl.enabled: true
 server.ssl.certificate: config/certs/elasticsearch.crt
 server.ssl.key: config/certs/elasticsearch.key
 elasticsearch.ssl.certificateAuthorities: [ "config/certs/ca.crt" ]
+xpack.encryptedSavedObjects.encryptionKey: "${KIBANA_SECRET}"
